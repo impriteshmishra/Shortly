@@ -14,7 +14,7 @@ const UserUrl = () => {
     refetchInterval: 30000, // Refetch every 30 seconds to update click counts
     staleTime: 0, // Consider data stale immediately so it refetches when invalidated
   });
-  console.log("urls", urls);
+  // console.log("urls", urls);
 
   const [copiedId, setCopiedId] = useState(null);
   const handleCopy = async (url, id) => {
@@ -116,12 +116,12 @@ const UserUrl = () => {
                 <td className="px-6 py-4">
                   <div className="text-sm">
                     <a
-                      href={`http://localhost:3500/${url.short_url}`}
+                      href={`${import.meta.env.VITE_BASE_URL}/${url.short_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-900 hover:underline"
                     >
-                      {`localhost:3500/${url.short_url}`}
+                      {`${import.meta.env.VITE_BASE_URL}/${url.short_url}`}
                     </a>
                   </div>
                 </td>
@@ -139,7 +139,7 @@ const UserUrl = () => {
                     onMouseDown={(e) => e.preventDefault()} // prevent focus from even starting
                     onClick={() =>
                       handleCopy(
-                        `http://localhost:3500/${url.short_url}`,
+                         `${import.meta.env.VITE_BASE_URL}/${url.short_url}`,
                         url._id
                       )
                     }

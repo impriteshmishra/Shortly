@@ -9,7 +9,7 @@ export const registerUser = async (req, res) => {
   }
 
   const { token, newUser } = await registerUserService(name, email, password);
-  console.log("newUser", newUser);
+  // console.log("newUser", newUser);
   req.user = newUser;
   res.cookie("accessToken", token, cookieOption);
   res.status(200).json({
@@ -21,7 +21,7 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const { token, user } = await loginUserService(email, password);
-  console.log(token);
+  // console.log(token);
   //  console.log(user);
 
   req.user = user;
@@ -30,7 +30,7 @@ export const loginUser = async (req, res) => {
 }
 
 export const logoutUser = async (req, res) => {
-  console.log("logout controller");
+  // console.log("logout controller");
   res.clearCookie("accessToken", cookieOption)
   res.status(200).json({ message: "logout success" })
 }

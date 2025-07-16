@@ -14,7 +14,7 @@ const LoginForm = ({ state }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
+  // console.log(auth);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -23,10 +23,10 @@ const LoginForm = ({ state }) => {
     try {
       const data = await loginUser(email, password);
       dispatch(login(data.user));
-      console.log("data", data.user);
+      // console.log("data", data.user);
       navigate({ to: "/dashboard" });
       setLoading(false);
-      console.log("signin success");
+      // console.log("signin success");
     } catch (err) {
       setLoading(false);
       setError(err.message || "Login failed. Please check your credentials.");

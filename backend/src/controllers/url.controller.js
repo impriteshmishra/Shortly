@@ -23,17 +23,17 @@ export const createUrl = async (req, res) => {
 
 export const redirectFromShortUrl = async (req, res) => {
     const { id } = req.params;
-    console.log("id", id);
+    // console.log("id", id);
     try {
         const fullUrl = await getUrl(id); // Already a string like "facebook.com"
-        console.log(fullUrl);
+        // console.log(fullUrl);
         if (fullUrl) {
             let redirectTo = fullUrl;
             if (!/^https?:\/\//i.test(redirectTo)) {
                 redirectTo = "https://" + redirectTo;
             }
 
-            console.log("Redirecting to:", redirectTo);
+            // console.log("Redirecting to:", redirectTo);
             res.redirect(redirectTo);
         } else {
             res.status(404).send("Short URL not found.");

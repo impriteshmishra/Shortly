@@ -25,7 +25,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await logoutUser(); // API call to remove cookie
-    console.log("Logout success")
+    // console.log("Logout success")
     dispatch(logout()); // Reset Redux state thats make false your auth
     navigate({ to: "/auth" });
   };

@@ -10,7 +10,7 @@ function UrlForm() {
   const [error, setError] = useState("");
   const [customSlug, setCustomSlug] = useState("");
   const { isAuthenticated } = useSelector((state) => state.auth);
-  console.log("isAuth", isAuthenticated);
+  // console.log("isAuth", isAuthenticated);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shortUrl);
@@ -25,14 +25,14 @@ function UrlForm() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    console.log("long url", longUrl);
+    // console.log("long url", longUrl);
     try {
       const response = await createShortUrl(longUrl, customSlug);
-      console.log("short url", response.data);
+      // console.log("short url", response.data);
 
       setShortUrl(response.data.shortUrl);
     } catch (err) {
-      console.log(err.response.data);
+      // console.log(err.response.data);
       if (err.response.data.error) {
         setError(err.response.data.error);
       } else {
@@ -41,6 +41,7 @@ function UrlForm() {
     }
     setLoading(false);
   };
+
 
   return (
     <div className="p-3 w-full ">

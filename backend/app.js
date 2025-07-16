@@ -40,7 +40,7 @@ app.use(errorHandler); //! We have to setup this more efficiently
 
 app.listen(process.env.PORT, () => {
     connectDB();
-    console.log("Server running on http://localhost:3500");
+    console.log(`Server running on ${process.env.APP_URL}`);
 })
 
 

@@ -1,7 +1,7 @@
 import urlSchema from "../models/url.model.js"
 
 export const saveUrl = async (shortUrl, longUrl, userId) => {
-    console.log(userId, "userId")
+    // console.log(userId, "userId")
     const newUrl = new urlSchema({
         full_url: longUrl,
         short_url: shortUrl
@@ -17,7 +17,7 @@ export const getUrl = async (id)=>{
     
     const url =  await urlSchema.findOneAndUpdate({short_url: id},{$inc:{click:1}});
     const fullUrl = url.full_url
-    console.log("full url", fullUrl);
+    // console.log("full url", fullUrl);
     
     return fullUrl;
 }
