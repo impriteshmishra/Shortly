@@ -1,13 +1,18 @@
-import './App.css'
-import Homepage from './pages/Homepage'
+import "./App.css";
 
-function App() {
+import Homepage from "./pages/Homepage";
+import LoginForm from "./components/LoginForm";
+import AuthPage from "./pages/AuthPage";
+import { Outlet } from "@tanstack/react-router";
+import Navbar from "./components/Navbar";
 
+function RootLayout() {
   return (
     <>
-     <Homepage/>
+    {/* <Navbar/> */}
+      <Outlet/>
     </>
-  )
+  );
 }
 
-export default App
+export default RootLayout;

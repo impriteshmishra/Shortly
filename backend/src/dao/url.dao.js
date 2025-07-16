@@ -1,12 +1,13 @@
 import urlSchema from "../models/url.model.js"
 
 export const saveUrl = async (shortUrl, longUrl, userId) => {
+    console.log(userId, "userId")
     const newUrl = new urlSchema({
         full_url: longUrl,
         short_url: shortUrl
     });
     if (userId) {
-        newUrl.user_id = userId;
+        newUrl.user = userId;
     }
     await newUrl.save();
 }
@@ -20,3 +21,7 @@ export const getUrl = async (id)=>{
     
     return fullUrl;
 }
+
+export const checkCustomSlug = async (slug) => {
+    return await urlSchema.findOne({short_url:slug});
+}    
