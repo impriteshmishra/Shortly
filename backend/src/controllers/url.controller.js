@@ -7,16 +7,16 @@ export const createUrl = async (req, res) => {
 
     try {
         let shortUrl;
-        if (req.user) {
-            shortUrl = await createShortUrlServiceWithUser(data.url, req.user._id, data.slug);
+        if (req?.user) {
+            shortUrl = await createShortUrlServiceWithUser(data?.url, req.user._id, data?.slug);
         }
         else {
-            shortUrl = await createShortUrlServiceWithoutUser(data.url);
+            shortUrl = await createShortUrlServiceWithoutUser(data?.url);
         }
         res.status(200).json({ shortUrl: process.env.APP_URL + shortUrl });
     } catch (error) {
-        console.error("Error in createUrl controller:", error.message);
-        res.status(400).json({ error: error.message });
+        console.error("Error in createUrl controller:", error?.message);
+        res.status(400).json({ error: error?.message });
     }
 
 }

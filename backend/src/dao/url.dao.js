@@ -16,7 +16,7 @@ export const getUrl = async (id)=>{
     // console.log("id from get url", id);
     
     const url =  await urlSchema.findOneAndUpdate({short_url: id},{$inc:{click:1}});
-    const fullUrl = url.full_url
+    const fullUrl = url?.full_url
     // console.log("full url", fullUrl);
     
     return fullUrl;

@@ -12,7 +12,7 @@ const isAuthenticated = async (req,res,next)=>{
         try {
             const decoded = verifyToken(token);
             // console.log(decoded)
-            const user = await findUserById(decoded.payload.id);
+            const user = await findUserById(decoded?.payload.id);
             // console.log(user)
             if(!user) return res.status(401).json({message: "Unauthorized"});
             req.user = user;
