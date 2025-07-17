@@ -27,6 +27,11 @@ app.use(cookieParser());
 app.use(attachUser);
 
 
+app.get("/", (req, res) => {
+    res.send("Server is running");
+});
+
+
 
 //APIs
 app.use("/api/v1/auth", authRoute)
