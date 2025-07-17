@@ -106,22 +106,22 @@ const UserUrl = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {urls.urls.reverse().map((url) => (
-              <tr key={url._id} className="hover:bg-gray-50">
+            {urls?.urls?.reverse().map((url) => (
+              <tr key={url?._id} className="hover:bg-gray-50">
                 <td className="px-6 py-4">
                   <div className="text-sm text-gray-900 truncate max-w-xs">
-                    {url.full_url}
+                    {url?.full_url}
                   </div>
                 </td>
                 <td className="px-6 py-4">
                   <div className="text-sm">
                     <a
-                      href={`${import.meta.env.VITE_BASE_URL}/${url.short_url}`}
+                      href={`${import.meta.env.VITE_BASE_URL}/s/${url?.short_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-900 hover:underline"
                     >
-                      {`${import.meta.env.VITE_BASE_URL}/${url.short_url}`}
+                      {`${import.meta.env.VITE_BASE_URL}/${url?.short_url}`}
                     </a>
                   </div>
                 </td>
