@@ -118,12 +118,12 @@ const UserUrl = () => {
                 <td className="px-6 py-4">
                   <div className="text-sm">
                     <a
-                      href={`${import.meta.env.VITE_BASE_URL}/s/${url?.short_url}`}
+                      href={`${import.meta.env.VITE_BASE_URL}s/${url?.short_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-900 hover:underline"
                     >
-                      {`${import.meta.env.VITE_BASE_URL}/${url?.short_url}`}
+                      {`${import.meta.env.VITE_BASE_URL}${url?.short_url}`}
                     </a>
                   </div>
                 </td>

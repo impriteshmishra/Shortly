@@ -42,6 +42,7 @@ function UrlForm() {
     setLoading(false);
   };
 
+   console.log("test base url",import.meta.env.VITE_BASE_URL)
 
   return (
     <div className="p-3 w-full ">
