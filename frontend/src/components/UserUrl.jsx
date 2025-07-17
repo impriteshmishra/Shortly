@@ -16,8 +16,6 @@ const UserUrl = () => {
   });
   // console.log("urls", urls);
 
-  console.log("test base url",import.meta.env.VITE_BASE_URL)
-
   const [copiedId, setCopiedId] = useState(null);
   const handleCopy = async (url, id) => {
     try {
@@ -118,7 +116,7 @@ const UserUrl = () => {
                 <td className="px-6 py-4">
                   <div className="text-sm">
                     <a
-                      href={`${import.meta.env.VITE_BASE_URL}s/${url?.short_url}`}
+                      href={`${import.meta.env.VITE_BASE_URL}${url?.short_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-900 hover:underline"
@@ -141,7 +139,7 @@ const UserUrl = () => {
                     onMouseDown={(e) => e.preventDefault()} // prevent focus from even starting
                     onClick={() =>
                       handleCopy(
-                         `${import.meta.env.VITE_BASE_URL}/${url.short_url}`,
+                         `${import.meta.env.VITE_BASE_URL}${url.short_url}`,
                         url._id
                       )
                     }

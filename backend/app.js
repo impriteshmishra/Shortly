@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRoute)
 app.use("/api/v1/create", urlRoute); // creating short url api
 app.use("/api/v1/user", userRoute)
-app.get("/s/:id", redirectFromShortUrl ); // redirection api
+app.get("/:id", redirectFromShortUrl ); // redirection api
 
   
 //Using error handler
