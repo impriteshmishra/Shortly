@@ -16,6 +16,8 @@ const UserUrl = () => {
   });
   // console.log("urls", urls);
 
+  console.log("test base url",import.meta.env.VITE_BASE_URL)
+
   const [copiedId, setCopiedId] = useState(null);
   const handleCopy = async (url, id) => {
     try {
