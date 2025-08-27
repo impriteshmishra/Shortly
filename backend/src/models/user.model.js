@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    isRegistered: {
+        type: Boolean,
+        default: false
+    },
     avatar: {
         type: String,
         required: false,

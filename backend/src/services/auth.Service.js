@@ -3,10 +3,14 @@ import { signToken } from "../utils/helper.js";
 
 export const registerUserService = async (name, email, password) => {
     const user = await findUserByEmail(email);
-    if(user) throw new Error("User already exist.");
+    if(user){
+        throw new Error("User already exist.");
+    }
 
     const newUser = await createUser(name,email,password);
     const token =  signToken({id: newUser?._id});
+    newUser.isRegistered = true;
+    await newUser.save();
     return {token,newUser};
 }
 

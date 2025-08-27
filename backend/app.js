@@ -28,7 +28,10 @@ app.use(attachUser);
 
 
 app.get("/", (req, res) => {
-    res.send("Server is running");
+    res.send({
+        message : "Server is ruuning.",
+        success:true
+    });
 });
 
 

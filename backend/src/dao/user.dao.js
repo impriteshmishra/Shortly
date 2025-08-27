@@ -14,7 +14,7 @@ export const findUserById = async (id) => {
 export const createUser = async (name, email, password) => {
     // console.log(name, email,password);
     
-    const newUser = new User({name, email, password})
+    const newUser = new User({name, email, password,  isVerified:true})
     await newUser.save();
     // console.log(newUser);
     return newUser;

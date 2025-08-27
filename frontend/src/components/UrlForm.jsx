@@ -29,7 +29,8 @@ function UrlForm() {
     try {
       const response = await createShortUrl(longUrl, customSlug);
       // console.log("short url", response.data);
-
+      console.log(response.data.shortUrl);
+      
       setShortUrl(response.data.shortUrl);
     } catch (err) {
       // console.log(err.response.data);

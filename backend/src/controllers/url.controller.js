@@ -13,6 +13,8 @@ export const createUrl = async (req, res) => {
         else {
             shortUrl = await createShortUrlServiceWithoutUser(data?.url);
         }
+        console.log(process.env.APP_URL + shortUrl);
+        
         res.status(200).json({ shortUrl: process.env.APP_URL + shortUrl });
     } catch (error) {
         console.error("Error in createUrl controller:", error?.message);
