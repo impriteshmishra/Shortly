@@ -2,14 +2,18 @@ import mongoose from "mongoose";
 
 const urlSchema = new mongoose.Schema({
     full_url: {
-        type:String,
+        type: String,
         required: true,
     },
     short_url: {
         type: String,
         required: true,
         unique: true,
-        index:true
+        index: true
+    },
+    description: {
+        type: String,
+        required: true
     },
     click: {
         type: Number,
@@ -20,7 +24,11 @@ const urlSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     }
-});
+},
+    {
+        timestamps: true
+    }
+);
 
 const url = mongoose.model("url", urlSchema);
 export default url;

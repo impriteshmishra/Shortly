@@ -13,8 +13,8 @@ const LoginForm = ({ state }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  // console.log(auth);
+  // const auth = useSelector((state) => state.auth);
+  // console.log("auth",auth);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -29,7 +29,8 @@ const LoginForm = ({ state }) => {
       // console.log("signin success");
     } catch (err) {
       setLoading(false);
-      setError(err.message || "Login failed. Please check your credentials.");
+      console.log(err);
+      setError(err?.response?.data?.message || err?.message || "Login failed. Please check your credentials.")
     }
   };
 

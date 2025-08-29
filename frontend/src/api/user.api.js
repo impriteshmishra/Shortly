@@ -36,3 +36,14 @@ export const getAllUserUrls = async () => {
     const {data} = await axiosInstance.post("/api/v1/user/urls");
     return data;
 }
+
+export const makePremiumUser = async (userId, gateway) => {
+    // console.log(userId, gateway);
+    const response = await axiosInstance.post(`/api/v1/user/premium/${userId}`, {gateway});
+    return response;
+}
+
+export const transactionFetch = async (sessionId) => {
+    const response = await axiosInstance.get(`/api/v1/user/transaction/${sessionId}`);
+    return response;
+}

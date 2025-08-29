@@ -1,14 +1,17 @@
 import urlSchema from "../models/url.model.js"
 
-export const saveUrl = async (shortUrl, longUrl, userId) => {
+export const saveUrl = async (shortUrl, longUrl, userId, description) => {
     // console.log(userId, "userId")
     const newUrl = new urlSchema({
         full_url: longUrl,
-        short_url: shortUrl
+        short_url: shortUrl,
     });
     if (userId) {
         newUrl.user = userId;
+        newUrl.description = description;
     }
+    // console.log( newUrl.description, "d");
+    
     await newUrl.save();
 }
 

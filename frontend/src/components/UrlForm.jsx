@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 function UrlForm() {
   const [longUrl, setLongUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
+  const [description, setDescription] = useState("");
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -25,12 +26,12 @@ function UrlForm() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    // console.log("long url", longUrl);
+    console.log(description);
     try {
-      const response = await createShortUrl(longUrl, customSlug);
+      const response = await createShortUrl(longUrl, customSlug, description);
       // console.log("short url", response.data);
       console.log(response.data.shortUrl);
-      
+
       setShortUrl(response.data.shortUrl);
     } catch (err) {
       // console.log(err.response.data);
@@ -43,7 +44,7 @@ function UrlForm() {
     setLoading(false);
   };
 
-   console.log("test base url",import.meta.env.VITE_BASE_URL)
+  // console.log("test base url", import.meta.env.VITE_BASE_URL);
 
   return (
     <div className="p-3 w-full ">
@@ -56,6 +57,41 @@ function UrlForm() {
           className="w-full p-2 border rounded"
           required
         />
+        {isAuthenticated && (
+          <>
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Description
+              </label>
+              <input
+                type="text"
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Recognize this URL (e.g., Resume Page, Portfolio, College Link)"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2"
+                required
+              />
+            </div>
+
+            <div className="mt-4">
+              <label
+                htmlFor="customSlug"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Custom URL (optional)
+              </label>
+              <input
+                type="text"
+                id="customSlug"
+                value={customSlug}
+                onChange={(e) => setCustomSlug(e.target.value)}
+                placeholder="Enter Custom URL"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2"
+              />
+            </div>
+          </>
+        )}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700 text-xl font-semibold cursor-pointer"
@@ -63,25 +99,6 @@ function UrlForm() {
           {loading ? "Cutting the fat..." : "Make URL Lite!"}
         </button>
       </form>
-
-      {isAuthenticated && (
-        <div className="mt-4">
-          <label
-            htmlFor="customSlug"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Custom URL (optional)
-          </label>
-          <input
-            type="text"
-            id="customSlug"
-            value={customSlug}
-            onChange={(e) => setCustomSlug(e.target.value)}
-            placeholder="Enter Custom URL"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2"
-          />
-        </div>
-      )}
 
       {shortUrl && (
         <div className="mt-6">

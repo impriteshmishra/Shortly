@@ -83,9 +83,11 @@ const RegisterForm = ({ state }) => {
       }
       navigate({ to: "/dashboard" });
     } catch (err) {
-        console.log(err);
-        
-        setError(err?.response?.data?.message || err?.message || "Registraion failed.")
+      console.log(err);
+
+      setError(
+        err?.response?.data?.message || err?.message || "Registraion failed."
+      );
     } finally {
       setLoading(false);
     }
@@ -242,19 +244,18 @@ const RegisterForm = ({ state }) => {
                 </button>
               </div>
             )}
+            <div className="text-center mt-3">
+              <p className="cursor-pointer text-lg text-gray-600">
+                Already have an account?{" "}
+                <span
+                  onClick={() => state(true)}
+                  className="text-blue-600 hover:text-blue-700 font-semibold text-xl"
+                >
+                  Sign In
+                </span>
+              </p>
+            </div>
           </form>
-
-          <div className="text-center">
-            <p className="cursor-pointer text-lg text-gray-600">
-              Already have an account?{" "}
-              <span
-                onClick={() => state(true)}
-                className="text-blue-600 hover:text-blue-700 font-semibold text-xl"
-              >
-                Sign In
-              </span>
-            </p>
-          </div>
         </div>
         <Testimonial />
       </div>

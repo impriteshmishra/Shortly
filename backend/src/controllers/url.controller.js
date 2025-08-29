@@ -1,5 +1,6 @@
 import { getUrl } from "../dao/url.dao.js";
 import { createShortUrlServiceWithoutUser, createShortUrlServiceWithUser } from "../services/createUrl.service.js";
+import urlSchema from "../models/url.model.js"
 
 export const createUrl = async (req, res) => {
     const data = req.body;
@@ -8,7 +9,7 @@ export const createUrl = async (req, res) => {
     try {
         let shortUrl;
         if (req?.user) {
-            shortUrl = await createShortUrlServiceWithUser(data?.url, req.user._id, data?.slug);
+            shortUrl = await createShortUrlServiceWithUser(data?.url, req.user._id, data?.slug, data?.description);
         }
         else {
             shortUrl = await createShortUrlServiceWithoutUser(data?.url);
@@ -48,7 +49,34 @@ export const redirectFromShortUrl = async (req, res) => {
 
 
 export const createCustomUrl = async (req, res) => {
-    const { url, slug } = req.body
+    const { url, slug } = req.body;
     const shortUrl = await createShortUrlServiceWithoutUser(url, customUrl)
     res.status(200).json({ shortUrl: process.env.APP_URL + shortUrl })
+}
+
+export const deleteUrl = async (req,res) => {
+    const {id} = req.params;
+    console.log(id, "from contr");
+    
+    try {
+        const deletedUrl = await urlSchema.findByIdAndDelete(id);
+
+        if(!deletedUrl){
+            return res.status(404).json({
+                message: "URL not found.",
+                success: false
+            })
+        }
+        res.status(200).json({
+            message: "Url deleted successfully.",
+            success: true
+        })
+
+    } catch (error) {
+        console.log(error, "delete url not work");
+        res.status(500).json({
+           message: "Server Error.",
+           success: false
+        })
+    }
 }

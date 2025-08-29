@@ -4,7 +4,8 @@ import connectDB from "./src/config/dbConnect.config.js";
 import urlRoute from "./src/routes/url.Route.js"
 import authRoute from "./src/routes/auth.Route.js"
 import userRoute from "./src/routes/user.Route.js"
-import { redirectFromShortUrl } from "./src/controllers/url.controller.js";
+import webhookRoute from "./src/routes/webhook.route.js"
+import {redirectFromShortUrl } from "./src/controllers/url.controller.js";
 import { errorHandler } from "./src/utils/errorHandler.js";
 import cors from "cors";
 import { attachUser } from "./src/utils/attachUser.js";
@@ -19,6 +20,9 @@ const corsOptions = {
     credentials: true
 }
 app.use(cors(corsOptions));
+
+// stripe webhook above the express.json because webhook require raw
+app.use("/webhook", webhookRoute );
 
 app.use(express.json()); //Parses incoming requests with JSON payloads. This is commonly used in APIs.
 app.use(express.urlencoded({ extended: true })); //Parses incoming requests with URL-encoded payloads, like the ones sent via HTML forms (application/x-www-form-urlencoded).
@@ -38,7 +42,7 @@ app.get("/", (req, res) => {
 
 //APIs
 app.use("/api/v1/auth", authRoute)
-app.use("/api/v1/create", urlRoute); // creating short url api
+app.use("/api/v1/url", urlRoute); 
 app.use("/api/v1/user", userRoute)
 app.get("/:id", redirectFromShortUrl ); // redirection api
 

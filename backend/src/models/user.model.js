@@ -22,17 +22,23 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    isPremiumUser: {
+        type: Boolean,
+        default: false
+    },
     avatar: {
         type: String,
         required: false,
-        default: function(){
+        default: function () {
             return getGravatarUrl(this.email);
         }
     }
+}, {
+    timestamps: true
 });
 
 
-function getGravatarUrl(email){
+function getGravatarUrl(email) {
     // We have to setup gravatar srivice that provide us default profile picture.
 }
 
