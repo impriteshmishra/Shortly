@@ -11,6 +11,8 @@ import {
   Calendar,
   Globe,
   LogOut,
+  CrownIcon,
+  Crown,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUserUrls, logoutUser } from "../api/user.api";
@@ -24,6 +26,9 @@ function ProfilePage() {
   const auth = useSelector((state) => state.auth);
   // console.log(auth);
   // console.log(auth.user.user.name);
+
+  const isPremium = auth?.user?.user?.isPremiumUser;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -81,7 +86,7 @@ function ProfilePage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Profile Section */}
@@ -100,9 +105,10 @@ function ProfilePage() {
                   </button>
                 </div> */}
 
-                  <div className="mt-4">
+                  <div className="mt-4 mb-2">
                     <h2 className="text-xl font-bold text-gray-900">
-                      {auth?.user?.user?.name}
+                      {auth?.user?.user?.name}{" "}
+                      
                     </h2>
                     <p className="text-gray-600">{auth?.user?.user?.email}</p>
 
@@ -115,6 +121,15 @@ function ProfilePage() {
                         Manage Profile
                       </button> */}
                   </div>
+                  {isPremium ? (
+                        <span className=" text-yellow-600 font-medium rounded-full px-1 text-sm border-1 border-yellow-600">
+                          Premium
+                        </span>
+                      ) : (
+                        <span className="text-blue-600 rounded-full px-1 medium text-sm border-1 border-blue-600">
+                          Free
+                        </span>
+                      )}
                 </div>
 
                 {/* Stats */}
