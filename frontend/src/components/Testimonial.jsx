@@ -3,7 +3,7 @@ import React from 'react';
 
 const testimonials = [
   {
-    name: "Rinki ke papa",
+    name: "Rahul",
     role: "Freelance Developer",
     image: "https://randomuser.me/api/portraits/men/32.jpg",
     quote:
@@ -17,7 +17,7 @@ const testimonials = [
       "Shortly helped me track my campaign links better. I love the simplicity and analytics integration!",
   },
   {
-    name: "Rinki ke chacha",
+    name: "Arvind",
     role: "Startup Founder",
     image: "https://randomuser.me/api/portraits/men/67.jpg",
     quote:
@@ -27,7 +27,7 @@ const testimonials = [
 
 const Testimonial = () => {
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 w-1/2">
+    <section className="py-12  sm:px-6 lg:px-8 sm:w-1/2">
       <div className="max-w-8xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-10">What Users Say About Shortly</h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

@@ -3,7 +3,7 @@ import { verifyToken } from "./helper.js";
 
 export const attachUser = async (req,res,next) => {
     const token = req.cookies.accessToken;
-    console.log(token, "attach token test")
+    // console.log(token, "attach token test")
     if(!token) return next();
     try {
         const decoded = verifyToken(token);

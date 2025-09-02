@@ -9,7 +9,11 @@ export const fetchTransaction = async (req, res) => {
         if (!transaction) {
             return res.status(404).json({ message: "Transaction not found" });
         }
-        res.json(transaction)
+        res.status(200).json(
+            {
+               transaction
+            }
+        )
 
     } catch (error) {
         console.error("Error fetching transaction:", error.message);

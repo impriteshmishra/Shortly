@@ -1,13 +1,14 @@
 import { createRoute } from "@tanstack/react-router";
 import { rootRoute } from "./routeTree";
-import AnalyticsDashboard from "../pages/AnalyticsDashboard";
 import { checkAuth } from "../utils/helper";
+import ManageQRCode from "../pages/ManageQrCode";
+import ManageUrl from "../pages/ManageUrl";
 
 
 
-export const analyticsRoute = createRoute({
+export const allUrlRoute = createRoute({
     getParentRoute: () => rootRoute,
-    path: '/analytics',
-    component: AnalyticsDashboard,
+    path: '/allUrls',
+    component: ManageUrl,
     beforeLoad: checkAuth
 }) 

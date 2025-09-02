@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv";
 import connectDB from "./src/config/dbConnect.config.js";
 import urlRoute from "./src/routes/url.Route.js"
+import qrRoute from "./src/routes/qr.Route.js"
 import authRoute from "./src/routes/auth.Route.js"
 import userRoute from "./src/routes/user.Route.js"
 import webhookRoute from "./src/routes/webhook.route.js"
@@ -10,10 +11,13 @@ import { errorHandler } from "./src/utils/errorHandler.js";
 import cors from "cors";
 import { attachUser } from "./src/utils/attachUser.js";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 const app = express();
 
 dotenv.config({});
+
+// const __dirname = path.resolve();
 
 const corsOptions = {
     origin: process.env.URL_FRONTEND,
@@ -31,24 +35,31 @@ app.use(cookieParser());
 app.use(attachUser);
 
 
-app.get("/", (req, res) => {
-    res.send({
-        message : "Server is ruuning.",
-        success:true
-    });
-});
+// app.get("/", (req, res) => {
+//     res.send({
+//         message : "Server is ruuning.",
+//         success:true
+//     });
+// });
 
 
 
 //APIs
 app.use("/api/v1/auth", authRoute)
 app.use("/api/v1/url", urlRoute); 
+app.use("/api/v1/qr", qrRoute);
 app.use("/api/v1/user", userRoute)
 app.get("/:id", redirectFromShortUrl ); // redirection api
 
   
 //Using error handler
 app.use(errorHandler); //! We have to setup this more efficiently
+
+//! For deployement
+// app.use(express.static(path.join(__dirname, "frontend", "dist")));
+// app.get("*", (req,res)=>{
+//     res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))  //path to get frontend
+// })
 
 app.listen(process.env.PORT, () => {
     connectDB();

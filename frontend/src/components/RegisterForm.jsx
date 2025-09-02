@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { sendOtp, verifyOtp, registerUser } from "../api/user.api.js";
 import { useDispatch } from "react-redux";
-import { login } from "../store/slice/authSlice";
+import { login } from "../store/slice/authSlice.js";
 import { useNavigate } from "@tanstack/react-router";
 import Testimonial from "./Testimonial.jsx";
 import Navbar from "./Navbar.jsx";
+import Footer from "./Footer.jsx";
 
-const RegisterForm = ({ state }) => {
+const RegisterForm = ({ setLogin }) => {
   const [step, setStep] = useState(1); // 1: email -> send otp, 2: otp -> verify, 3: name+password -> register
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -83,7 +84,7 @@ const RegisterForm = ({ state }) => {
       }
       navigate({ to: "/dashboard" });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
 
       setError(
         err?.response?.data?.message || err?.message || "Registraion failed."
@@ -96,14 +97,14 @@ const RegisterForm = ({ state }) => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center w-full min-h-screen bg-gray-50">
-        <div className="w-full max-w-2xl mx-2">
+      <div className="flex flex-col items-center justify-center w-full min-h-screen bg-gray-50 py-8 px-4">
+        <div className="w-full max-w-2xl">
           {/* prevent default submit on Enter so clicks control the flow */}
           <form
             onSubmit={(e) => e.preventDefault()}
             className="bg-white rounded-xl px-8 pt-6 pb-8 mb-4 border border-blue-500"
           >
-            <h1 className="text-blue-600 text-2xl font-bold text-center">
+            <h1 className="text-blue-600 text-2xl font-bold text-center pb-6 pt-4">
               Create Account
             </h1>
 
@@ -119,18 +120,7 @@ const RegisterForm = ({ state }) => {
               </div>
             )}
 
-            {/* Step indicator (optional) */}
-            <div className="flex items-center justify-center gap-2 my-4">
-              {[1, 2, 3].map((s) => (
-                <div
-                  key={s}
-                  className={`h-2 w-20 rounded-full ${
-                    step >= s ? "bg-blue-600" : "bg-gray-200"
-                  }`}
-                />
-              ))}
-            </div>
-
+          
             {/* STEP 1: Email */}
             {step === 1 && (
               <div>
@@ -247,18 +237,20 @@ const RegisterForm = ({ state }) => {
             <div className="text-center mt-3">
               <p className="cursor-pointer text-lg text-gray-600">
                 Already have an account?{" "}
-                <span
-                  onClick={() => state(true)}
-                  className="text-blue-600 hover:text-blue-700 font-semibold text-xl"
+                <button
+                type="button"
+                  onClick={()=>setLogin(true)}
+                  className="text-blue-500 hover:text-blue-700 font-semibold text-xl cursor-pointer"
                 >
                   Sign In
-                </span>
+                </button>
               </p>
             </div>
           </form>
         </div>
         <Testimonial />
       </div>
+      <Footer/>
     </>
   );
 };

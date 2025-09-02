@@ -13,6 +13,14 @@ const qrSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    expireAt: {
+        type: Date
     }
 },
     {
@@ -20,5 +28,6 @@ const qrSchema = new mongoose.Schema({
     }
 );
 
-const Qr = mongoose.model("url", qrSchema);
+
+const Qr = mongoose.model("Qr", qrSchema);
 export default Qr;

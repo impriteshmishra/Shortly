@@ -1,15 +1,15 @@
-import { getUrl } from "../dao/url.dao.js";
+import {getUrlDoc } from "../dao/url.dao.js";
 import { createShortUrlServiceWithoutUser, createShortUrlServiceWithUser } from "../services/createUrl.service.js";
 import urlSchema from "../models/url.model.js"
 
 export const createUrl = async (req, res) => {
     const data = req.body;
-    // console.log(data)
+    console.log(data)
 
     try {
         let shortUrl;
         if (req?.user) {
-            shortUrl = await createShortUrlServiceWithUser(data?.url, req.user._id, data?.slug, data?.description);
+            shortUrl = await createShortUrlServiceWithUser(data?.url, req.user._id, data?.slug, data?.description, data?.expireDate);
         }
         else {
             shortUrl = await createShortUrlServiceWithoutUser(data?.url);
@@ -28,10 +28,18 @@ export const redirectFromShortUrl = async (req, res) => {
     const { id } = req.params;
     // console.log("id", id);
     try {
-        const fullUrl = await getUrl(id); // Already a string like "facebook.com"
+        const user = await getUrlDoc(id); // Already a string like "facebook.com"
         // console.log(fullUrl);
-        if (fullUrl) {
-            let redirectTo = fullUrl;
+        if(user.expireAt){
+            if(user.expireAt < new Date()){
+                return res.status(410).json({
+                    message: "URL validity is expired.",
+                    success:false
+                })
+            }
+        }
+        if (user.full_url) {
+            let redirectTo = user.full_url;
             if (!/^https?:\/\//i.test(redirectTo)) {
                 redirectTo = "https://" + redirectTo;
             }

@@ -1,10 +1,10 @@
 import axiosInstance from "../utils/axiosInstance";
 
-export const createShortUrl = async (url,slug, description) => {
+export const createShortUrl = async (url,slug, description, expireDate) => {
     // console.log("api",url)
     const response = await axiosInstance.post(
         "/api/v1/url/create",
-        { url:url, slug, description }
+        { url:url, slug, description, expireDate }
       );
     //   console.log(response);
       
@@ -12,7 +12,7 @@ export const createShortUrl = async (url,slug, description) => {
 }
 
 export const deleteUrl = async (urlId) =>{
-    console.log(urlId, "from api");
+    // console.log(urlId, "from api");
     const response = await axiosInstance.delete(`/api/v1/url/delete/${urlId}`)
     return response.data;
 }

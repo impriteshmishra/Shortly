@@ -12,8 +12,7 @@ const urlSchema = new mongoose.Schema({
         index: true
     },
     description: {
-        type: String,
-        required: true
+        type: String
     },
     click: {
         type: Number,
@@ -23,12 +22,16 @@ const urlSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+    },
+    expireAt: {
+        type: Date
     }
 },
     {
         timestamps: true
     }
 );
+
 
 const url = mongoose.model("url", urlSchema);
 export default url;

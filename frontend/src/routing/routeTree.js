@@ -8,10 +8,12 @@ import { aboutRoute } from "./about.route";
 import { analyticsRoute } from "./analytics.route";
 import { premiumRoute } from "./premium.route";
 import { PaymentSuccessRoute } from "./paymentSuccess.route";
+import { allQrRoute} from "./allQr.route";
+import { allUrlRoute } from "./allUrl.route";
 
 
 export const rootRoute = createRootRoute({
     component: RootLayout
 })
 
-export const routeTree = rootRoute.addChildren([homePageRoute, authRoute, dashboardRoute, ContactRoute, aboutRoute, loginRoute, logoutRoute, profileRoute, analyticsRoute, premiumRoute,PaymentSuccessRoute]); 
+export const routeTree = rootRoute.addChildren([homePageRoute, authRoute, dashboardRoute, ContactRoute, aboutRoute, loginRoute, logoutRoute, profileRoute, analyticsRoute, premiumRoute,PaymentSuccessRoute,allQrRoute,allUrlRoute]); 

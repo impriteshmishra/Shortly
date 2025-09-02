@@ -1,6 +1,6 @@
 import urlSchema from "../models/url.model.js"
 
-export const saveUrl = async (shortUrl, longUrl, userId, description) => {
+export const saveUrl = async (shortUrl, longUrl, userId, description, expireAt) => {
     // console.log(userId, "userId")
     const newUrl = new urlSchema({
         full_url: longUrl,
@@ -9,20 +9,20 @@ export const saveUrl = async (shortUrl, longUrl, userId, description) => {
     if (userId) {
         newUrl.user = userId;
         newUrl.description = description;
+        newUrl.expireAt = expireAt
     }
     // console.log( newUrl.description, "d");
     
     await newUrl.save();
 }
 
-export const getUrl = async (id)=>{
+export const getUrlDoc = async (id)=>{
     // console.log("id from get url", id);
     
-    const url =  await urlSchema.findOneAndUpdate({short_url: id},{$inc:{click:1}});
-    const fullUrl = url?.full_url
+    const user =  await urlSchema.findOneAndUpdate({short_url: id},{$inc:{click:1}});
     // console.log("full url", fullUrl);
     
-    return fullUrl;
+    return user;
 }
 
 export const checkCustomSlug = async (slug) => {

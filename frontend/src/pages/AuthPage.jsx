@@ -12,9 +12,9 @@ function AuthPage() {
       <div className="min-h-screen flex items-center justify-center bg-gray-100 ">
         <div className="w-full ">
           {login ? (
-            <LoginForm state={setLogin} />
+            <LoginForm setLogin={setLogin} />
           ) : (
-            <RegisterForm state={setLogin} />
+            <RegisterForm setLogin={setLogin} />
           )}
         </div>
       </div>

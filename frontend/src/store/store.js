@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slice/authSlice';
+import qrReducer from './slice/qrSlice';
+import urlReducer from './slice/urlSlice'
 import {
   persistStore,
   persistReducer,
@@ -14,6 +16,7 @@ import storage from 'redux-persist/lib/storage'; // uses localStorage
 
 import { combineReducers } from 'redux';
 
+
 const persistConfig = {
   key: 'root',
   storage,
@@ -21,6 +24,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  qr: qrReducer,
+  url: urlReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

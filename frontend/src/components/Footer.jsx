@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 
 const Footer = () => {
   return (
-    <footer className=" bg-gray-900 text-white py-6 border-t-8 border-blue-500">
+    <footer className=" bg-gray-900 text-white py-6">
       <div className="max-w-7xl mx-auto px-4 flex flex-col justify-between items-center flex-wrap gap-6">
         <div className="text-lg font-semibold">
           © {new Date().getFullYear()} ShortLy. All rights reserved.

@@ -7,15 +7,17 @@ import { transactionFetch } from "../api/user.api.js";
 export default function PaymentSuccess() {
   const search = useSearch({ from: "/payment-success" });
 
-  const [transaction, setTransaction] = useState(null);
+  const [transactions, setTransactions] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (search.session_id) {
+    if (search?.session_id) {
       const fetchTransaction = async () => {
         try {
-          const response = await transactionFetch(search.session_id);
-          setTransaction(response);
+          const response = await transactionFetch(search?.session_id);
+          console.log(response.data.transaction);
+          
+          setTransactions(response?.data?.transaction);
         } catch (error) {
           console.error("Error fetching transaction:", error);
         }
@@ -28,7 +30,7 @@ export default function PaymentSuccess() {
    navigate({to: "/dashboard"})
   };
 
-  console.log("transaction", transaction);
+//  console.log(transactions?.data?.transaction);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 flex items-center justify-center p-4">
@@ -50,13 +52,13 @@ export default function PaymentSuccess() {
               <div className="flex justify-between items-center mb-2">
                 <span className="text-gray-600">Transaction ID:</span>
                 <span className="text-sm text-gray-900">
-                  {transaction?.data?.paymentIntentId}
+                  {transactions?.paymentIntentId}
                 </span>
               </div>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-gray-600">Amount:</span>
                 <span className="font-bold text-xl text-gray-800">
-                  ${transaction?.data?.amountTotal}
+                  ${transactions?.amountTotal}
                 </span>
               </div>
               <div className="flex justify-between items-center">

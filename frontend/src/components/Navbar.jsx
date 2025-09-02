@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
@@ -10,27 +10,40 @@ import { LayoutDashboard } from "lucide-react";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
-  // console.log(user.user.name);
+  const { isAuthenticated, user } = useSelector((state) => state?.auth);
+  // console.log("from nav", user);
+
   const userName = user?.user?.name;
   const isPremium = user?.user?.isPremiumUser;
 
-  // Fetch current user from API
-  useQuery({
+  // SOLUTION 1: Use React Query (Recommended)
+  const {
+    data: userData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["currentUser"],
     queryFn: getCurrentUser,
+    enabled: isAuthenticated,
     onSuccess: (data) => {
-      dispatch(login(data));
+      dispatch(login(data.user));
+    
     },
-    onError: () => {
+    onError: (error) => {
+      // console.error("Failed to fetch user:", error);
       dispatch(logout());
     },
-    staleTime: 1000 * 60 * 5, // cache for 5 min
+    staleTime: 1000 * 60 * 5,
+    retry: 1,
   });
+ 
 
   return (
     <nav className="bg-white shadow-md p-4 flex justify-around items-center sticky top-0 z-50">
-      <Link to="/" className="text-2xl font-bold italic text-blue-600">
+      <Link
+        to="/"
+        className="text-2xl sm:text-4xl font-bold italic bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
+      >
         Shortly
       </Link>
 
@@ -45,7 +58,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/signup"
-              className="hover:text-blue-500  bg-blue-500 text-white text-lg font-medium border hover:border-blue-500 hover:bg-white px-2 py-1 rounded transition-all duration-200 transform hover:scale-105"
+              className="hover:text-blue-500 bg-blue-500 text-white text-lg font-medium border hover:border-blue-500 hover:bg-white px-2 py-1 rounded transition-all duration-200 transform hover:scale-105"
             >
               Signup
             </Link>
@@ -64,17 +77,17 @@ const Navbar = () => {
               className="flex items-center gap-1 cursor-pointer text-gray-600 font-medium text-lg hover:text-blue-800 transition-all duration-100 transform hover:scale-105"
             >
               <CircleUser />
-              <span className=" mt-1">{userName.split(" ")[0]}</span>
+              <span className="mt-1">{userName?.split(" ")[0] || "User"}</span>
             </Link>
 
             {isPremium ? (
-              <span className=" text-yellow-600 font-medium rounded-full px-2 text-sm border-1 border-yellow-600 mt-1">
+              <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-medium rounded-full px-2 py-1 sm:text-lg">
                 Premium
               </span>
             ) : (
               <Link
                 to="/premium"
-                className="flex items-center gap-1  bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
+                className="flex items-center gap-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
               >
                 <CrownIcon />
                 <span>Buy Premium</span>
