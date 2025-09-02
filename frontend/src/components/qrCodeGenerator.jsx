@@ -71,7 +71,7 @@ function QrCodeGenerator() {
           <label className="block text-white text-sm font-medium mb-2 text-left">
             Enter URL to generate QR Code
           </label>
-          <div className="flex space-x-3">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full">
             <input
               type="url"
               value={url}
@@ -82,16 +82,19 @@ function QrCodeGenerator() {
             <button
               onClick={handleQrGenerate}
               disabled={!url}
-              className={`px-8 py-3 font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed  flex items-center space-x-2 ${
+              className={`px-6 py-3 font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 ${
                 isPremium
                   ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white hover:from-cyan-600 hover:to-purple-700"
                   : "bg-gradient-to-r from-yellow-400 to-orange-500 text-white hover:from-yellow-500 hover:to-orange-600"
               }`}
             >
               <QrCode className="w-4 h-4" />
-              <span>{isPremium ? "Generate QR" : "Upgrade to Generate"}</span>
+              <span className="text-center">
+                {isPremium ? "Generate QR" : "Upgrade to Generate"}
+              </span>
             </button>
           </div>
+
           <div className="mt-4">
             <label className="block text-white text-sm font-medium mb-2 text-left">
               Description

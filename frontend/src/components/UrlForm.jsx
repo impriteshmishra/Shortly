@@ -39,6 +39,13 @@ function UrlForm() {
       return;
     }
 
+    if(isPremium) {
+      if(!description) {
+        toast.error("Description required.")
+        return;
+      }
+    }
+
     try {
       const response = await createShortUrl(longUrl, customSlug, description, expireDate);
       // console.log("short url", response.data);
@@ -64,12 +71,12 @@ function UrlForm() {
 
   return (
     <div className="w-full bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
-      <div className="flex bg-white/5 rounded-lg p-1 mb-8">
+      <div className="flex items-center text-xs sm:text-md bg-white/5 rounded-lg p-1 mb-8 ">
         <button
           onClick={() => setActiveTab("shorten")}
           className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-md transition-all ${
             activeTab === "shorten"
-              ? "bg-white text-purple-900 font-semibold"
+              ? "bg-white text-purple-900 sm:font-semibold"
               : "text-white hover:bg-white/10"
           }`}
         >
@@ -80,7 +87,7 @@ function UrlForm() {
           onClick={() => setActiveTab("qr")}
           className={`flex-1 flex items-center justify-center space-x-2 py-3 px-4 rounded-md transition-all relative ${
             activeTab === "qr"
-              ? "bg-white text-purple-900 font-semibold"
+              ? "bg-white text-purple-900 sm:font-semibold"
               : "text-white hover:bg-white/10"
           }`}
         >
@@ -108,7 +115,7 @@ function UrlForm() {
               <button
                 onClick={handleShortUrl}
                 disabled={!longUrl}
-                className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="px-1 text-xs sm:text-base sm:px-8 sm:py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white sm:font-semibold rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 Shorten
               </button>
@@ -165,17 +172,17 @@ function UrlForm() {
             </>
           )}
           {shortUrl && (
-            <div className="bg-white/5 rounded-lg p-6 border border-green-400/30">
+            <div className="bg-white/5 rounded-lg p-2 sm:p-6 border border-green-400/30">
               <label className="block text-white text-sm font-medium mb-2 text-left">
                 Your shortened URL
               </label>
-              <div className="flex items-center space-x-3">
-                <div className="flex-1 px-4 py-3 bg-white/10 rounded-lg text-cyan-300 font-mono">
+              <div className="flex flex-col sm:items-center space-x-3 gap-2">
+                <div className="flex-1 px-4 py-3 bg-white/10 rounded-lg text-cyan-300 sm:font-mono ">
                   {shortUrl}
                 </div>
                 <button
                   onClick={handleCopy}
-                  className="px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all flex items-center space-x-2 cursor-pointer"
+                  className="px-4 py-3 sm:bg-green-500 sm:hover:bg-green-600 text-white rounded-lg transition-all flex items-center space-x-2 cursor-pointer"
                 >
                   {copied ? (
                     <Check className="w-4 h-4" />
@@ -188,7 +195,7 @@ function UrlForm() {
                   href={`${shortUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all cursor-pointer"
+                  className="px-4 py-3 sm:bg-blue-500 sm:hover:bg-blue-600 text-white rounded-lg transition-all cursor-pointer"
                 >
                   <ExternalLink className="w-4 h-4" />
                 </a>

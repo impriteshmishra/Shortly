@@ -24,18 +24,18 @@ export default function ShortlyHomepage() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Hero Section */}
             <div className="mb-12">
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 Shorten URLs &<br />
                 <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
                   Generate QR Codes
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              <p className="sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                 Transform long URLs into short, shareable links and create
                 stunning QR codes with our premium features.
               </p>
               {!isPremium && (
-                <h1 className="text-white font-semibold text-2xl">
+                <h1 className="text-white font-semibold sm:text-2xl">
                   {" "}
                   Buy Premium for powerful Analytics like click counts, Custom
                   URLs, Set expiry date, QR generator, etc.{" "}

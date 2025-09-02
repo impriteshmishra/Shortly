@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 function AuthPage() {
   const [login, setLogin] = useState(false);
@@ -18,7 +16,7 @@ function AuthPage() {
           )}
         </div>
       </div>
-      <Footer/>
+      
     </>
   );
 }

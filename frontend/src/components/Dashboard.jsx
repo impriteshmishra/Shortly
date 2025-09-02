@@ -24,10 +24,10 @@ function Dashboard() {
       <Navbar />
       <div className="min-h-screen  flex flex-col items-center justify-center p-4  bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 pb-10">
         <div className="mb-6 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <h2 className="text-xl sm:text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Welcome to Dashboard <br />
             <span className="bg-gradient-to-r from-cyan-300 to-purple-500 bg-clip-text text-transparent text-3xl">
-              Manage & Generate URLs/QR Codes
+             Generate URLs/QR Codes & Manage 
             </span>
           </h2>
           {!isPremium && (
@@ -48,7 +48,7 @@ function Dashboard() {
                   <Link className="w-8 h-8 text-blue-600" />
                 </div>
                 <p>Click</p>
-                <h2 className="sm:text-2xl font-semibold text-gray-800 group-hover:text-blue-700 transition-colors duration-300">
+                <h2 className="text-sm sm:text-2xl font-semibold text-gray-800 group-hover:text-blue-700 transition-colors duration-300">
                   Manage URL
                 </h2>
                
@@ -63,8 +63,8 @@ function Dashboard() {
                     <QrCode className="w-8 h-8 text-purple-600" />
                   </div>
                   <p>Click</p>
-                  <h2 className="sm:text-2xl font-semibold text-gray-800 group-hover:text-purple-700 transition-colors duration-300">
-                    Manage QR Code
+                  <h2 className="text-sm sm:text-2xl font-semibold text-gray-800 group-hover:text-purple-700 transition-colors duration-300">
+                    Manage QR
                   </h2>
                  
                 </div>

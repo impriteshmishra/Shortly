@@ -336,7 +336,7 @@ const LoginForm = ({ setLogin }) => {
         </div>
         <WelcomeBack />
       </div>
-      <Footer />
+      <Footer/>
     </>
   );
 };

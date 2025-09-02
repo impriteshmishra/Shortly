@@ -68,7 +68,8 @@ const ManageQRCode = () => {
       <div className="min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6">
         <div className="max-w-7xl mx-auto">
           {/* Header - Responsive */}
-          <div className="mb-6 md:mb-8">
+          <div className="bg-gray-100 p-2">
+            <div className="mb-6 md:mb-8">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="flex items-center space-x-3">
                 <QrCode className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
@@ -92,6 +93,8 @@ const ManageQRCode = () => {
             </div>
             {/* You can add more stat cards here if needed */}
           </div>
+          </div>
+          
 
           {/* QR Codes Grid - Fully Responsive */}
           <div className="bg-gray-200 rounded-xl p-3 sm:p-4 md:p-6 min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
