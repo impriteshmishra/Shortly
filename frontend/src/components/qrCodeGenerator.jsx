@@ -24,11 +24,11 @@ function QrCodeGenerator() {
         }
         const response = await generateQr(url, description, expireDate);
 
-        setQrData(response.data);
+        setQrData(response?.data);
         setDescription("");
         setUrl("");
       } catch (error) {
-        toast.error(error.message);
+        toast.error(error?.message);
       }
     }
   };

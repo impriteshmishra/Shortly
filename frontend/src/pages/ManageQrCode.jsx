@@ -25,9 +25,9 @@ const ManageQRCode = () => {
     const fetchQr = async () => {
       try {
         const response = await getAllUserQr();
-        dispatch(setQrList(response.qr));
+        dispatch(setQrList(response?.qr));
       } catch (error) {
-        toast.error(error.message);
+        toast.error(error?.message);
       }
     };
     fetchQr();
@@ -126,7 +126,7 @@ const ManageQRCode = () => {
                     <div className="flex justify-center mb-4">
                       <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40">
                         <img
-                          src={qrCode.qrCode}
+                          src={qrCode?.qrCode}
                           alt="QR Code"
                           className="w-full h-full object-contain border border-blue-500 rounded"
                         />
@@ -137,12 +137,12 @@ const ManageQRCode = () => {
                     <div className="mb-4 text-xs sm:text-sm text-gray-600 text-center">
                       <span>
                         Created:{" "}
-                        {new Date(qrCode.createdAt).toLocaleDateString([], {
+                        {new Date(qrCode?.createdAt).toLocaleDateString([], {
                           dateStyle: "short",
                         })}
                         <span className="hidden sm:inline">
                           {" "}
-                          {new Date(qrCode.createdAt).toLocaleTimeString([], {
+                          {new Date(qrCode?.createdAt).toLocaleTimeString([], {
                             timeStyle: "short",
                           })}
                         </span>

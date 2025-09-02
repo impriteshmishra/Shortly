@@ -17,7 +17,7 @@ const app = express();
 
 dotenv.config({});
 
-// const __dirname = path.resolve();
+const __dirname = path.resolve();
 
 const corsOptions = {
     origin: process.env.URL_FRONTEND,
@@ -49,17 +49,20 @@ app.use("/api/v1/auth", authRoute)
 app.use("/api/v1/url", urlRoute); 
 app.use("/api/v1/qr", qrRoute);
 app.use("/api/v1/user", userRoute)
-app.get("/:id", redirectFromShortUrl ); // redirection api
 
-  
-//Using error handler
-app.use(errorHandler); //! We have to setup this more efficiently
+app.get("/s/:id", redirectFromShortUrl ); // redirection api
+
+
 
 //! For deployement
-// app.use(express.static(path.join(__dirname, "frontend", "dist")));
-// app.get("*", (req,res)=>{
-//     res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))  //path to get frontend
-// })
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
+app.use((req,res)=>{
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))  //path to get frontend
+})
+
+
+//Using error handler
+app.use(errorHandler); //! We have to setup this more efficiently
 
 app.listen(process.env.PORT, () => {
     connectDB();

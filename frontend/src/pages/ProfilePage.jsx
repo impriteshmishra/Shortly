@@ -62,6 +62,7 @@ function ProfilePage() {
     await logoutUser(); // API call to remove cookie
     // console.log("Logout success")
     window.location.href = "/auth";
+    // navigate({to: "/login"})
   };
 
   return (

@@ -32,9 +32,9 @@ function Dashboard() {
           </h2>
           {!isPremium && (
             <h1 className="text-white font-medium text-2xl mb-6">
-              {" "}
+              {" "} 
               Buy Premium for powerful Analytics like click counts, Custom URLs,
-              Geolocation, QR generator, etc.{" "}
+              Custom Expiry Date, QR generator, etc.{" "}
             </h1>
           )}
         </div>

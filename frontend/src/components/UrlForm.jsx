@@ -3,6 +3,7 @@ import { createShortUrl } from "../api/shortUrl.api.js";
 import { useSelector } from "react-redux";
 import { Check, Copy, Crown, ExternalLink, Link, QrCode } from "lucide-react";
 import QrCodeGenerator from "./qrCodeGenerator";
+import { toast } from "react-toastify";
 
 function UrlForm() {
   const [longUrl, setLongUrl] = useState("");
@@ -32,20 +33,26 @@ function UrlForm() {
     setLoading(true);
     setError("");
     // console.log(description);
+
+    if(new Date(expireDate) <= new Date()){
+      toast.error("Expiry date must be in future.")
+      return;
+    }
+
     try {
       const response = await createShortUrl(longUrl, customSlug, description, expireDate);
       // console.log("short url", response.data);
       // console.log(response.data.shortUrl);
 
-      setShortUrl(response.data.shortUrl);
+      setShortUrl(response?.data?.shortUrl);
       setLongUrl("");
       setDescription("");
       setCustomSlug("");
       setExpireDate("");
     } catch (err) {
       // console.log(err.response.data);
-      if (err.response.data.error) {
-        setError(err.response.data.error);
+      if (err?.response?.data?.error) {
+        setError(err?.response?.data?.error);
       } else {
         setError("Something went wrong. Please try again.");
       }

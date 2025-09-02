@@ -31,7 +31,7 @@ export const stripePayment = async (userId) => {
 
         return session;
     } catch (error) {
-        throw new Error(error.message);
+        throw new Error(error?.message);
     }
 }
 

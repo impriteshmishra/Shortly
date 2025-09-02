@@ -37,7 +37,7 @@ const RegisterForm = ({ setLogin }) => {
       setStep(2);
     } catch (err) {
       setError(
-        err?.response?.data?.error || err.message || "Failed to send OTP."
+        err?.response?.data?.error || err?.message || "Failed to send OTP."
       );
     } finally {
       setLoading(false);
@@ -54,11 +54,11 @@ const RegisterForm = ({ setLogin }) => {
     try {
       setLoading(true);
       const res = await verifyOtp(email, otp); // POST /verify-otp
-      setMessage(res.message || "Email verified!");
+      setMessage(res?.message || "Email verified!");
       setStep(3);
     } catch (err) {
       setError(
-        err?.response?.data?.error || err.message || "OTP verification failed."
+        err?.response?.data?.error || err?.message || "OTP verification failed."
       );
     } finally {
       setLoading(false);
@@ -78,7 +78,7 @@ const RegisterForm = ({ setLogin }) => {
     try {
       setLoading(true);
       const res = await registerUser(name, email, password); // POST /register
-      setMessage(res.message || "Account created!");
+      setMessage(res?.message || "Account created!");
       if (res.user) {
         dispatch(login(res.user));
       }

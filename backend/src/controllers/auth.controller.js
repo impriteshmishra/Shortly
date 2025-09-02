@@ -10,7 +10,7 @@ export const sendOtp = async (req, res) => {
 
   try {
     const existing = await User.findOne({ email });
-    if (existing && existing.verified) {
+    if (existing && existing?.verified) {
       return res.status(400).json({
         error: "Email already verified!"
       })
@@ -45,9 +45,9 @@ export const sendOtp = async (req, res) => {
     })
 
   } catch (error) {
-    console.log(error.message);
+    console.log(error?.message);
     res.status(500).json({
-      error: error.message
+      error: error?.message
     })
   }
 }
@@ -60,8 +60,8 @@ export const verifyOTP = async (req, res) => {
     const record = await OtpVerify.findOne({ email });
 
     if (!record) return res.status(400).json({ error: "Email not find!" });
-    if (record.otp !== otp) return res.status(400).json({ error: "Invalid OTP" });
-    if (record.otpExpires < Date.now()) return res.status(400).json({ error: "OTP expired!" });
+    if (record?.otp !== otp) return res.status(400).json({ error: "Invalid OTP" });
+    if (record?.otpExpires < Date.now()) return res.status(400).json({ error: "OTP expired!" });
 
     record.verified = true;
     await record.save();
@@ -70,9 +70,9 @@ export const verifyOTP = async (req, res) => {
     })
 
   } catch (error) {
-    console.log(error.message);
+    console.log(error?.message);
     res.status(500).json({
-      error: error.message
+      error: error?.message
     })
   }
 }
@@ -100,7 +100,7 @@ export const registerUser = async (req, res) => {
     })
   } catch (error) {
     return res.status(500).json({
-      message: error.message || "Something went wrong"
+      message: error?.message || "Something went wrong"
     })
   }
 }
@@ -173,9 +173,9 @@ export const sendOtp2 = async (req, res) => {
     })
 
   } catch (error) {
-    console.log(error.message);
+    console.log(error?.message);
     res.status(500).json({
-      error: error.message
+      error: error?.message
     })
   }
 }
@@ -188,8 +188,8 @@ export const verifyOTP2 = async (req, res) => {
     const record = await OtpVerify.findOne({ email });
 
     if (!record) return res.status(400).json({ error: "Email not find!" });
-    if (record.otp !== otp) return res.status(400).json({ error: "Invalid OTP" });
-    if (record.otpExpires < Date.now()) return res.status(400).json({ error: "OTP expired!" });
+    if (record?.otp !== otp) return res.status(400).json({ error: "Invalid OTP" });
+    if (record?.otpExpires < Date.now()) return res.status(400).json({ error: "OTP expired!" });
 
     record.verified = true;
     await record.save();
@@ -198,9 +198,9 @@ export const verifyOTP2 = async (req, res) => {
     })
 
   } catch (error) {
-    console.log(error.message);
+    console.log(error?.message);
     res.status(500).json({
-      error: error.message
+      error: error?.message
     })
   }
 }
@@ -236,7 +236,7 @@ export const resetPassword = async (req, res) => {
     })
   } catch (error) {
     return res.status(500).json({
-      message: error.message || "Something went wrong"
+      message: error?.message || "Something went wrong"
     })
   }
 }

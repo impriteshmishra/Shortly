@@ -23,10 +23,6 @@ const Premium = () => {
 
   const features = [
     {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Geolocation Tracking",
-    },
-    {
       icon: <Calendar className="w-6 h-6" />,
       title: "Custom Expiry Dates",
     },
@@ -51,7 +47,7 @@ const Premium = () => {
   const handlePayment = async (gateway, userId) => {
     try {
       const response = await makePremiumUser(userId, gateway);
-      if (response.data.success) {
+      if (response?.data?.success) {
         window.location.href = response.data.url;
       }
     } catch (error) {
@@ -77,7 +73,7 @@ const Premium = () => {
               </h1>
               <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
                 Take your URL management to the next level with powerful
-                Analytics, Custom URLs, Geolocation, QR generator, etc.
+                Analytics, Custom URLs, Custom Expiry Date, QR generator, etc.
               </p>
             </div>
           </div>
@@ -87,16 +83,16 @@ const Premium = () => {
           <div className="bg-white rounded-3xl shadow-xl p-8  max-w-2xl mx-auto">
             <h1 className="text-center pb-4 text-2xl font-semibold text-gray-600">Grab This Bundle</h1>
             <div className="flex flex-col gap-2 mb-16 ">
-              {features.map((feature, index) => (
+              {features?.map((feature, index) => (
                 <div
                   key={index}
                   className="flex items-center gap-2 bg-purple-100 rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-200"
                 >
                   <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white  group-hover:scale-110 transition-transform duration-300">
-                    {feature.icon}
+                    {feature?.icon}
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900">
-                    {feature.title}
+                    {feature?.title}
                   </h3>
                 </div>
               ))}
@@ -105,7 +101,7 @@ const Premium = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Buy Now</h3>
           
               <div className="text-6xl font-bold text-gray-900 mb-2">
-                {price.USD}
+                {price?.USD}
               </div>
             </div>
 
@@ -127,7 +123,7 @@ const Premium = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </div> 
   );
 };
 

@@ -11,13 +11,13 @@ export default function PaymentSuccess() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (search?.session_id) {
+    if (search.session_id) {
       const fetchTransaction = async () => {
         try {
-          const response = await transactionFetch(search?.session_id);
-          console.log(response.data.transaction);
+          const response = await transactionFetch(search.session_id);
+          console.log(response?.data?.transaction);
           
-          setTransactions(response?.data?.transaction);
+          setTransactions(response.data.transaction);
         } catch (error) {
           console.error("Error fetching transaction:", error);
         }

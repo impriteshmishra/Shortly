@@ -87,7 +87,7 @@ function UserUrl() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 ">
           <div className="rounded-lg shadow-md p-6">
             <div className="text-2xl font-bold text-blue-600">
-              {urlData.length}
+              {urlData?.length}
             </div>
             <div className="text-gray-600">Total URLs</div>
           </div>
@@ -131,7 +131,7 @@ function UserUrl() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-2 gap-4">
                         <h4 className="sm:text-xl font-semibold text-gray-600">
-                          {url.description}
+                          {url?.description}
                         </h4>
                         {url?.expireAt ? (
                           <span
@@ -155,7 +155,7 @@ function UserUrl() {
                           <span className="sm:text-xl text-gray-500 font-semibold">
                             Original:{" "}
                             <span className="font-normal text-green-500">
-                              {url.full_url}
+                              {url?.full_url}
                             </span>
                           </span>
                         </div>
@@ -164,13 +164,13 @@ function UserUrl() {
                             Short Url:
                           </span>
                           <a
-                            href={`${import.meta.env.VITE_BASE_URL}${
+                            href={`${import.meta.env.VITE_BASE_URL}s/${
                               url?.short_url
                             }`}
                             target="_blank"
                             className="text-xl text-blue-600 hover:text-blue-800 truncat"
                           >
-                            {`${import.meta.env.VITE_BASE_URL}${
+                            {`${import.meta.env.VITE_BASE_URL}s/${
                               url?.short_url
                             }`}
                           </a>
@@ -181,7 +181,7 @@ function UserUrl() {
                           <span className="flex items-center sm:text-xl font-semibold gap-2">
                             <span className="text-gray-500">Click's:</span>
                             <div className="flex items-center gap-1 bg-blue-100 px-2 py-1 rounded-full">
-                              {url.click}
+                              {url?.click}
                             </div>
                           </span>
                           {url?.expireAt && (
@@ -208,7 +208,7 @@ function UserUrl() {
                       <span className="text-gray-500 font-semibold sm:text-xl">
                         Created:{" "}
                         <span className="sm:text-lg font-normal text-blue-900">
-                          {new Date(url.createdAt).toLocaleString([], {
+                          {new Date(url?.createdAt).toLocaleString([], {
                             dateStyle: "medium",
                             timeStyle: "short",
                           })}

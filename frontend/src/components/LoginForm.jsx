@@ -79,11 +79,11 @@ const LoginForm = ({ setLogin }) => {
     try {
       setLoading(true);
       const res = await resetVerifyOtp(email, otp);
-      setMessage(res.message || "Email verified!");
+      setMessage(res?.message || "Email verified!");
       setStep(3);
     } catch (err) {
       setError(
-        err?.response?.data?.error || err.message || "OTP verification failed."
+        err?.response?.data?.error || err?.message || "OTP verification failed."
       );
     } finally {
       setLoading(false);
@@ -103,7 +103,7 @@ const LoginForm = ({ setLogin }) => {
       setLoading(true);
       const res = await resetPasswordSubmit(email, password);
       setMessage(res.message || "Password reset successfully!");
-      if (res.user) {
+      if (res?.user) {
         dispatch(login(res.user));
       }
       navigate({ to: "/auth" });

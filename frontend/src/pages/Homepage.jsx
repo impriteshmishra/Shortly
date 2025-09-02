@@ -38,7 +38,7 @@ export default function ShortlyHomepage() {
                 <h1 className="text-white font-semibold text-2xl">
                   {" "}
                   Buy Premium for powerful Analytics like click counts, Custom
-                  URLs, Geolocation, QR generator, etc.{" "}
+                  URLs, Set expiry date, QR generator, etc.{" "}
                 </h1>
               )}
             </div>
@@ -83,7 +83,7 @@ export default function ShortlyHomepage() {
                 </h3>
                 <p className="text-gray-300">
                   Unlock advanced features, analytics, custom slug
-                  QR code generation, geo location, etc.
+                  QR code generation, custom expiry date, etc.
                 </p>
               </div>
             </div>

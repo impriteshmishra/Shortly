@@ -16,7 +16,7 @@ export const createUrl = async (req, res) => {
         }
         console.log(process.env.APP_URL + shortUrl);
         
-        res.status(200).json({ shortUrl: process.env.APP_URL + shortUrl });
+        res.status(200).json({ shortUrl: process.env.APP_URL + "s/" + shortUrl });
     } catch (error) {
         console.error("Error in createUrl controller:", error?.message);
         res.status(400).json({ error: error?.message });
@@ -28,18 +28,18 @@ export const redirectFromShortUrl = async (req, res) => {
     const { id } = req.params;
     // console.log("id", id);
     try {
-        const user = await getUrlDoc(id); // Already a string like "facebook.com"
+        const user = await getUrlDoc(id); 
         // console.log(fullUrl);
-        if(user.expireAt){
-            if(user.expireAt < new Date()){
+        if(user?.expireAt){
+            if(user?.expireAt < new Date()){
                 return res.status(410).json({
                     message: "URL validity is expired.",
                     success:false
                 })
             }
         }
-        if (user.full_url) {
-            let redirectTo = user.full_url;
+        if (user?.full_url) {
+            let redirectTo = user?.full_url;
             if (!/^https?:\/\//i.test(redirectTo)) {
                 redirectTo = "https://" + redirectTo;
             }
