@@ -220,7 +220,7 @@ function UserUrl() {
                       <button
                         onClick={() =>
                           handleCopyUrl(
-                            `${import.meta.env.VITE_BASE_URL}${url?.short_url}`,
+                            `${import.meta.env.VITE_BASE_URL}s/${url?.short_url}`,
                             url._id
                           )
                         }
