@@ -7,7 +7,7 @@ function ManageUrl() {
   return (
     <>
       <Navbar />
-      <div className="md:mx-92">
+      <div className="xl:mx-91">
         <UserUrl />
       </div>
       <Footer />

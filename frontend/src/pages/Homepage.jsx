@@ -90,7 +90,6 @@ export default function ShortlyHomepage() {
           </div>
         </main>
       </div>
-      <Footer />
     </div>
   );
 }
