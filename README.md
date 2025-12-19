@@ -2,7 +2,7 @@
 
 Shortly is a simple and fast URL shortener built with the MERN stack. It allows users to shorten long URLs, manage them through a dashboard, and track click metrics — all with a clean UI.
 
-🌐 **Live Demo**: [http://13.127.158.54](http://13.127.158.54)
+🌐 **Live Demo**: [https://shortly-aaik.onrender.com/](https://shortly-aaik.onrender.com/)
 
 ---
 
